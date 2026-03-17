@@ -373,14 +373,35 @@ input,select,button{font-family:var(--font-b)}
 .placement-inner p{color:rgba(255,255,255,.7);font-size:14px;margin-bottom:0}
 
 /* =============================================
-   TESTIMONIALS — grey
+   TESTIMONIALS — infinite scroll carousel
    ============================================= */
 .testimonials{background:var(--grey-bg)}
-.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.testi-carousel-wrap{
+    overflow:hidden;
+    /* soft fade edges */
+    -webkit-mask-image:linear-gradient(to right,transparent 0%,#000 8%,#000 92%,transparent 100%);
+    mask-image:linear-gradient(to right,transparent 0%,#000 8%,#000 92%,transparent 100%);
+    padding:8px 0 16px;
+}
+@keyframes marquee{
+    0%{transform:translateX(0)}
+    100%{transform:translateX(-50%)}
+}
+.testi-track{
+    display:flex;
+    gap:20px;
+    width:max-content;
+    animation:marquee 28s linear infinite;
+    will-change:transform;
+}
+.testi-track:hover{
+    animation-play-state:paused;
+}
 .testi-card{
     background:#fff;border:1px solid var(--border);
     border-radius:var(--r);padding:26px 22px;
     transition:border-color .2s,box-shadow .2s;
+    flex:0 0 320px;width:320px;
 }
 .testi-card:hover{border-color:var(--orange);box-shadow:var(--shadow)}
 .stars{color:#e8a000;font-size:15px;margin-bottom:12px;letter-spacing:2px}
@@ -496,7 +517,6 @@ footer{background:#12274d;color:rgba(255,255,255,.75);padding:68px 0 0}
 @media(max-width:1100px){
     .programs-grid{grid-template-columns:repeat(2,1fr)}
     .footer-grid{grid-template-columns:1fr 1fr;gap:28px}
-    .testi-grid{grid-template-columns:repeat(2,1fr)}
 }
 @media(max-width:900px){
     .section-pad{padding:56px 0}
@@ -514,7 +534,7 @@ footer{background:#12274d;color:rgba(255,255,255,.75);padding:68px 0 0}
     .director-img img{margin:0 auto}
     .director-text blockquote{text-align:left}
     .highlights-grid{grid-template-columns:repeat(2,1fr)}
-    .testi-grid{grid-template-columns:1fr}
+    .testi-card{flex:0 0 280px;width:280px}
     .facility-blocks{height:auto;grid-template-columns:1fr}
     .fac-block{height:240px}
     .fac-cards{grid-template-columns:repeat(2,1fr)}
