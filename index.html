@@ -673,18 +673,138 @@
         reveal();
 
         // Form submit
-        document.getElementById('hero-form').addEventListener('submit', function (e) {
+        document.getElementById('hero-form').addEventListener('submit', async function (e) {
             e.preventDefault();
-            const btn = this.querySelector('.submit-btn');
-            btn.textContent = '✅ Application Submitted!';
-            btn.style.background = '#2ecc71';
-            setTimeout(() => { btn.textContent = 'Apply Now — Free'; btn.style.background = ''; }, 4000);
+            const form = e.target;
+            const btn = form.querySelector('.submit-btn');
+            const originalText = btn.textContent;
+            btn.textContent = 'Sending...';
+
+            const formData = new FormData(form);
+            const data = Object.fromEntries(formData.entries());
+
+            try {
+                const response = await fetch('http://localhost:3000/api/send-email', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        from: 'CIT Admissions <onboarding@resend.dev>',
+                        to: 'jagadeeshgelivi@gmail.com',
+                        subject: 'New Application Received',
+                        html: `
+                            <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; border: 1px solid #e0e0e0; border-radius: 8px; overflow: hidden;">
+                                <div style="background-color: #0d2c6b; color: #ffffff; padding: 20px; text-align: center;">
+                                    <h2 style="margin: 0;">New Admission Application</h2>
+                                    <p style="margin: 5px 0 0; font-size: 14px; opacity: 0.9;">Chettinad Institute of Technology</p>
+                                </div>
+                                <div style="padding: 30px;">
+                                    <h3 style="color: #333333; margin-top: 0;">Applicant Details</h3>
+                                    <table style="width: 100%; border-collapse: collapse; margin-top: 15px;">
+                                        <tr>
+                                            <td style="padding: 12px 0; border-bottom: 1px solid #eeeeee; color: #666666; width: 35%;"><strong>Full Name</strong></td>
+                                            <td style="padding: 12px 0; border-bottom: 1px solid #eeeeee; color: #333333;">${data.name}</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding: 12px 0; border-bottom: 1px solid #eeeeee; color: #666666;"><strong>Email Address</strong></td>
+                                            <td style="padding: 12px 0; border-bottom: 1px solid #eeeeee; color: #333333;"><a href="mailto:${data.email}" style="color: #0056b3; text-decoration: none;">${data.email}</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding: 12px 0; border-bottom: 1px solid #eeeeee; color: #666666;"><strong>Mobile Number</strong></td>
+                                            <td style="padding: 12px 0; border-bottom: 1px solid #eeeeee; color: #333333;">${data.phone}</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding: 12px 0; border-bottom: 1px solid #eeeeee; color: #666666;"><strong>Program Selected</strong></td>
+                                            <td style="padding: 12px 0; border-bottom: 1px solid #eeeeee; color: #333333; font-weight: 600;">${data.program}</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div style="background-color: #f8f9fa; padding: 15px; text-align: center; color: #777777; font-size: 12px;">
+                                    <p style="margin: 0;">This email was generated automatically from your landing page.</p>
+                                </div>
+                            </div>
+                        `
+                    })
+                });
+
+                if (response.ok) {
+                    btn.textContent = '✅ Application Submitted!';
+                    btn.style.background = '#2ecc71';
+                    form.reset(); // Properly clears the form
+                } else {
+                    const resData = await response.json();
+                    console.error('API Error:', resData);
+                    btn.textContent = '❌ Failed to Send';
+                    btn.style.background = '#e74c3c';
+                }
+            } catch (err) {
+                console.error('Network Error:', err);
+                btn.textContent = '❌ Failed to Send';
+                btn.style.background = '#e74c3c';
+            }
+            setTimeout(() => { btn.textContent = 'Register Now'; btn.style.background = ''; }, 4000);
         });
-        document.getElementById('footer-form').addEventListener('submit', function (e) {
+
+        document.getElementById('footer-form').addEventListener('submit', async function (e) {
             e.preventDefault();
-            const btn = this.querySelector('button');
-            btn.textContent = '✅ Sent!';
-            setTimeout(() => { btn.textContent = 'Send Enquiry'; }, 3000);
+            const form = e.target;
+            const btn = form.querySelector('button');
+            const originalText = btn.textContent;
+            btn.textContent = 'Sending...';
+
+            const name = form.querySelector('input[type="text"]').value;
+            const phone = form.querySelector('input[type="tel"]').value;
+
+            try {
+                const response = await fetch('http://localhost:3000/api/send-email', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        from: 'CIT Admissions <onboarding@resend.dev>',
+                        to: 'jagadeeshgelivi@gmail.com',
+                        subject: 'New Enquiry Received',
+                        html: `
+                            <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; border: 1px solid #e0e0e0; border-radius: 8px; overflow: hidden;">
+                                <div style="background-color: #0d2c6b; color: #ffffff; padding: 20px; text-align: center;">
+                                    <h2 style="margin: 0;">New Quick Enquiry</h2>
+                                    <p style="margin: 5px 0 0; font-size: 14px; opacity: 0.9;">Chettinad Institute of Technology</p>
+                                </div>
+                                <div style="padding: 30px;">
+                                    <table style="width: 100%; border-collapse: collapse;">
+                                        <tr>
+                                            <td style="padding: 12px 0; border-bottom: 1px solid #eeeeee; color: #666666; width: 35%;"><strong>Name</strong></td>
+                                            <td style="padding: 12px 0; border-bottom: 1px solid #eeeeee; color: #333333;">${name}</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding: 12px 0; border-bottom: 1px solid #eeeeee; color: #666666;"><strong>Mobile Number</strong></td>
+                                            <td style="padding: 12px 0; border-bottom: 1px solid #eeeeee; color: #333333;">${phone}</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        `
+                    })
+                });
+
+                if (response.ok) {
+                    btn.textContent = '✅ Sent!';
+                    btn.style.background = '#2ecc71';
+                    form.reset(); // Properly clears the form
+                } else {
+                    const resData = await response.json();
+                    console.error('API Error:', resData);
+                    btn.textContent = '❌ Failed to Send';
+                    btn.style.background = '#e74c3c';
+                }
+            } catch (err) {
+                console.error('Network Error:', err);
+                btn.textContent = '❌ Failed to Send';
+                btn.style.background = '#e74c3c';
+            }
+            setTimeout(() => { btn.textContent = 'Send Enquiry'; btn.style.background = ''; }, 3000);
         });
 
         // Animated counters
