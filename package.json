@@ -1,0 +1,26 @@
+{
+  "name": "university-landing-page",
+  "version": "1.0.0",
+  "description": "��#\u0000 \u0000c\u0000h\u0000e\u0000t\u0000t\u0000i\u0000n\u0000a\u0000d\u0000-\u0000u\u0000n\u0000i\u0000v\u0000e\u0000r\u0000s\u0000i\u0000t\u0000y\u0000\r\u0000 \u0000",
+  "main": "index.js",
+  "scripts": {
+    "dev": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/surendra-crax/chettinad-university.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/surendra-crax/chettinad-university/issues"
+  },
+  "homepage": "https://github.com/surendra-crax/chettinad-university#readme",
+  "dependencies": {
+    "cors": "^2.8.6",
+    "express": "^5.2.1"
+  }
+}
