@@ -3,53 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Terms and Conditions | Chettinad Institute of Technology</title>
+    <title>Thank You | Chettinad Institute of Technology</title>
     <link rel="icon" type="image/png" href="assets/logos/cit_logo_final.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Poppins:wght@600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <style>
-        .legal-content {
-            padding: 100px 0;
+        .thank-you-content {
+            padding: 140px 0;
             background: #fff;
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
         }
-        .legal-box {
-            max-width: 900px;
+        .thank-you-box {
+            max-width: 640px;
             margin: 0 auto;
-            color: var(--text);
-            line-height: 1.8;
+            padding: 40px;
+            background: var(--grey-bg);
+            border: 1px solid var(--border);
+            border-radius: var(--r);
+            box-shadow: var(--shadow-soft);
         }
-        .legal-box h1 {
-            font-family: var(--font-h);
-            color: var(--navy);
-            font-size: 32px;
+        .thank-you-icon {
+            font-size: 64px;
             margin-bottom: 24px;
-            border-bottom: 2px solid var(--orange);
-            padding-bottom: 12px;
+            line-height: 1;
         }
-        .legal-box h2 {
+        .thank-you-box h1 {
             font-family: var(--font-h);
             color: var(--navy);
-            font-size: 24px;
-            margin: 40px 0 20px;
-        }
-        .legal-box p {
+            font-size: clamp(28px, 4vw, 36px);
             margin-bottom: 16px;
+            line-height: 1.2;
+        }
+        .thank-you-box p {
             color: var(--text-mid);
+            font-size: 16px;
+            margin-bottom: 24px;
+            line-height: 1.6;
         }
-        .legal-box ul {
-            margin-bottom: 20px;
-            padding-left: 20px;
-            list-style: disc;
+        .thank-you-box .highlight {
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 32px;
         }
-        .legal-box ul li {
-            margin-bottom: 12px;
-            color: var(--text-mid);
-            padding-left: 5px;
-        }
-        .legal-box strong {
-            color: var(--navy);
+        .cta-btns {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-top: 24px;
         }
     </style>
 </head>
@@ -89,19 +96,18 @@
         </div>
     </header>
 
-    <main class="legal-content">
+    <main class="thank-you-content">
         <div class="container">
-            <div class="legal-box">
-                <h1>Terms and Conditions</h1>
-<ul>
-    <li>Admission to CARE is conditional until the first tuition fee has been paid in full.</li>
-    <li>Tuition fees are set prior to the start of each academic year and vary from programme to programme.</li>
-    <li>The student must pay the tuition fee stipulated when he/she commences studies, provided that studies are conducted at a regular pace and without leave of absence.</li>
-    <li>The tuition fee must be paid by the deadlines set by CARE.</li>
-    <li>The tuition fee must be paid one semester at a time, prior to the start of each semester.</li>
-    <li>Current students who fail to pay the stipulated tuition fee by the prescribed date will be put on academic suspension.</li>
-    <li>Tuition fees do not cover other costs related to admission or studies at CARE.</li>
-</ul>
+            <div class="thank-you-box">
+                <div class="thank-you-icon">🎉</div>
+                <h1>Build Your Future in Technology & Innovation</h1>
+                <p>Our admissions team will contact you shortly with the next steps.</p>
+                <p class="highlight">👉 Meanwhile, feel free to explore more about our programs.</p>
+                
+                <div class="cta-btns">
+                    <a href="tel:+917036401000" class="btn btn-primary btn-lg">Call Us: +91 70364 01000</a>
+                    <a href="index.html" class="btn btn-outline btn-lg">Back To Landing Page</a>
+                </div>
             </div>
         </div>
     </main>

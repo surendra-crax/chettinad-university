@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CIT Engineering — Admissions 2026 | Chettinad Institute of Technology</title>
+    <link rel="icon" type="image/png" href="assets/logos/cit_logo_final.png">
     <meta name="description"
         content="Apply for B.Tech, M.Tech and BCA programs at Chettinad Institute of Technology. 95% placement rate, 12+ innovation labs, NAAC accredited.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -626,6 +627,7 @@
                 if (response.ok) {
                     btn.textContent = '✅ Success!';
                     form.reset();
+                    window.location.href = 'thank-you.html';
                 } else {
                     btn.textContent = '❌ Error';
                 }
