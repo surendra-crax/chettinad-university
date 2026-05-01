@@ -618,7 +618,10 @@
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
                         from: 'CIT Admissions <onboarding@resend.dev>',
-                        to: 'jagadeeshgelivi@gmail.com',
+                        to: [
+            'jagadeeshgelivi@gmail.com',
+            'spirahworks@gmail.com'
+        ],
                         subject: `New Lead: ${formData.name}`,
                         html: `<h2>New Lead Received</h2><p><strong>Name:</strong> ${formData.name}</p><p><strong>Email:</strong> ${formData.email}</p><p><strong>Phone:</strong> ${formData.phone}</p>`
                     })
