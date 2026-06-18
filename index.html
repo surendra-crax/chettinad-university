@@ -102,39 +102,90 @@
                     <span>500+ Industry Partners</span>
                 </div>
             </div>
-            <div class="hero-form-wrap" id="apply">
-                <div class="form-card">
-                    <h2 class="form-title">Secure Your Seat</h2>
-                    <p class="form-subtitle">Limited seats — Apply early</p>
-                    <form id="hero-form" novalidate>
-                        <div class="field">
-                            <input type="text" id="fname" name="name" placeholder="Full Name *" required>
-                        </div>
-                        <div class="field">
-                            <input type="email" id="femail" name="email" placeholder="Email Address *" required>
-                        </div>
-                        <div class="field">
-                            <input type="tel" id="fphone" name="phone" placeholder="Mobile Number *" required>
-                        </div>
-                        <div class="field">
-                            <select id="fprogram" name="program" required>
-                                <option value="">Select Your Program *</option>
-                                <option>B.Tech — Computer Science Engineering</option>
-                                <option>B.Tech — AI & Data Science</option>
-                                <option>B.Tech — Cyber Security</option>
-                                <option>B.Tech — Electronics & Communication</option>
-                                <option>B.Tech — CSE (AI & ML)</option>
-                                <option>B.Tech — ECE (VLSI Design)</option>
-                                <option>B.Tech — Robotics & AI</option>
-                                <option>M.Tech (Integrated) — CSE</option>
-                                <option>Bachelor of Computer Applications (BCA)</option>
-                            </select>
-                        </div>
-                        <button type="submit" class="submit-btn">Register Now</button>
-                    </form>
-                    <p class="form-disclaimer">By submitting, you agree to receive program updates from CIT.</p>
-                </div>
+            ```html
+<div class="hero-form-wrap" id="apply">
+    <div class="form-card">
+        <h2 class="form-title">Secure Your Seat</h2>
+        <p class="form-subtitle">Limited seats — Apply early</p>
+
+        <form id="hero-form" novalidate>
+            <div class="field">
+                <input
+                    type="text"
+                    id="fname"
+                    name="name"
+                    placeholder="Full Name *"
+                    required
+                >
             </div>
+
+            <div class="field">
+                <input
+                    type="email"
+                    id="femail"
+                    name="email"
+                    placeholder="Email Address *"
+                    required
+                >
+            </div>
+
+            <div class="field">
+                <input
+                    type="tel"
+                    id="fphone"
+                    name="phone"
+                    placeholder="Mobile Number *"
+                    required
+                >
+            </div>
+
+            <div class="field">
+                <input
+                    type="text"
+                    id="fintercollege"
+                    name="intermediateCollege"
+                    placeholder="Intermediate College Name *"
+                    required
+                >
+            </div>
+
+            <div class="field">
+                <input
+                    type="text"
+                    id="finterpercentage"
+                    name="intermediatePercentage"
+                    placeholder="Intermediate Percentage / CGPA *"
+                    required
+                >
+            </div>
+
+            <div class="field">
+                <select id="fprogram" name="program" required>
+                    <option value="">Select Your Program *</option>
+                    <option>B.Tech — Computer Science Engineering</option>
+                    <option>B.Tech — AI & Data Science</option>
+                    <option>B.Tech — Cyber Security</option>
+                    <option>B.Tech — Electronics & Communication</option>
+                    <option>B.Tech — CSE (AI & ML)</option>
+                    <option>B.Tech — ECE (VLSI Design)</option>
+                    <option>B.Tech — Robotics & AI</option>
+                    <option>M.Tech (Integrated) — CSE</option>
+                    <option>Bachelor of Computer Applications (BCA)</option>
+                </select>
+            </div>
+
+            <button type="submit" class="submit-btn">
+                Register Now
+            </button>
+        </form>
+
+        <p class="form-disclaimer">
+            By submitting, you agree to receive program updates from CIT.
+        </p>
+    </div>
+</div>
+```
+
         </div>
     </section>
 
