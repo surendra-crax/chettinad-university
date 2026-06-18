@@ -652,52 +652,88 @@
             document.body.classList.toggle('no-scroll');
         });
 
-        // Form Logic
-        const handleForm = async (e) => {
-            e.preventDefault();
-            const form = e.target;
-            const btn = form.querySelector('button');
-            const originalText = btn.textContent;
-            btn.textContent = 'Processing...';
-            btn.disabled = true;
+        /```javascript
+// Form Logic
+const handleForm = async (e) => {
+    e.preventDefault();
 
-            const formData = Object.fromEntries(new FormData(form).entries());
+    const form = e.target;
+    const btn = form.querySelector('button');
+    const originalText = btn.textContent;
 
-            try {
-                const response = await fetch('api/send-email', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        from: 'CIT Admissions <onboarding@resend.dev>',
-                        to: [
-            'jagadeeshgelivi@gmail.com',
-            'spirahworks@gmail.com'
-        ],
-                        subject: `New Lead: ${formData.name}`,
-                        html: `<h2>New Lead Received</h2><p><strong>Name:</strong> ${formData.name}</p><p><strong>Email:</strong> ${formData.email}</p><p><strong>Phone:</strong> ${formData.phone}</p>`
-                    })
-                });
+    btn.textContent = 'Processing...';
+    btn.disabled = true;
 
-                if (response.ok) {
-                    btn.textContent = '✅ Success!';
-                    form.reset();
-                    window.location.href = 'thank-you.html';
-                } else {
-                    btn.textContent = '❌ Error';
-                }
-            } catch (err) {
-                btn.textContent = '❌ Error';
-            }
-            
+    const formData = Object.fromEntries(
+        new FormData(form).entries()
+    );
+
+    try {
+        const response = await fetch('api/send-email', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                from: 'CIT Admissions <onboarding@resend.dev>',
+                to: [
+                    'jagadeeshgelivi@gmail.com',
+                    'spirahworks@gmail.com'
+                ],
+                subject: `New Lead: ${formData.name}`,
+                html: `
+                    <h2>🎓 New CIT Admission Lead</h2>
+
+                    <p><strong>Full Name:</strong> ${formData.name}</p>
+                    <p><strong>Email:</strong> ${formData.email}</p>
+                    <p><strong>Mobile Number:</strong> ${formData.phone}</p>
+                    <p><strong>Intermediate College:</strong> ${formData.intermediateCollege}</p>
+                    <p><strong>Intermediate Percentage / CGPA:</strong> ${formData.intermediatePercentage}</p>
+                    <p><strong>Selected Program:</strong> ${formData.program}</p>
+
+                    <hr>
+
+                    <p><strong>Submitted At:</strong> ${new Date().toLocaleString()}</p>
+                `
+            })
+        });
+
+        if (response.ok) {
+            btn.textContent = '✅ Success!';
+            form.reset();
+
+            setTimeout(() => {
+                window.location.href = 'thank-you.html';
+            }, 1000);
+        } else {
+            btn.textContent = '❌ Error';
+
             setTimeout(() => {
                 btn.textContent = originalText;
                 btn.disabled = false;
-            }, 4000);
-        };
+            }, 3000);
+        }
+    } catch (err) {
+        console.error(err);
 
-        document.getElementById('hero-form')?.addEventListener('submit', handleForm);
-        document.getElementById('footer-form')?.addEventListener('submit', handleForm);
-    </script>
+        btn.textContent = '❌ Error';
+
+        setTimeout(() => {
+            btn.textContent = originalText;
+            btn.disabled = false;
+        }, 3000);
+    }
+};
+
+document
+    .getElementById('hero-form')
+    ?.addEventListener('submit', handleForm);
+
+document
+    .getElementById('footer-form')
+    ?.addEventListener('submit', handleForm);
+```
+
 
     <!-- Meta Pixel -->
     <script>
