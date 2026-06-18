@@ -652,7 +652,7 @@
             document.body.classList.toggle('no-scroll');
         });
 
-        /```javascript
+        
 // Form Logic
 const handleForm = async (e) => {
     e.preventDefault();
@@ -667,6 +667,8 @@ const handleForm = async (e) => {
     const formData = Object.fromEntries(
         new FormData(form).entries()
     );
+
+    console.log('Submitting:', formData);
 
     try {
         const response = await fetch('api/send-email', {
@@ -687,9 +689,9 @@ const handleForm = async (e) => {
                     <p><strong>Full Name:</strong> ${formData.name}</p>
                     <p><strong>Email:</strong> ${formData.email}</p>
                     <p><strong>Mobile Number:</strong> ${formData.phone}</p>
-                    <p><strong>Intermediate College:</strong> ${formData.intermediateCollege}</p>
-                    <p><strong>Intermediate Percentage / CGPA:</strong> ${formData.intermediatePercentage}</p>
-                    <p><strong>Selected Program:</strong> ${formData.program}</p>
+                    <p><strong>Intermediate College:</strong> ${formData.intermediateCollege || 'N/A'}</p>
+                    <p><strong>Intermediate Percentage / CGPA:</strong> ${formData.intermediatePercentage || 'N/A'}</p>
+                    <p><strong>Selected Program:</strong> ${formData.program || 'N/A'}</p>
 
                     <hr>
 
@@ -725,14 +727,12 @@ const handleForm = async (e) => {
     }
 };
 
-document
-    .getElementById('hero-form')
+document.getElementById('hero-form')
     ?.addEventListener('submit', handleForm);
 
-document
-    .getElementById('footer-form')
+document.getElementById('footer-form')
     ?.addEventListener('submit', handleForm);
-```
+
 
 
     <!-- Meta Pixel -->
