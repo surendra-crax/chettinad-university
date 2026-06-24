@@ -102,90 +102,6 @@
                     <span>500+ Industry Partners</span>
                 </div>
             </div>
-        
-<div class="hero-form-wrap" id="apply">
-    <div class="form-card">
-        <h2 class="form-title">Secure Your Seat</h2>
-        <p class="form-subtitle">Limited seats — Apply early</p>
-
-        <form id="hero-form" novalidate>
-            <div class="field">
-                <input
-                    type="text"
-                    id="fname"
-                    name="name"
-                    placeholder="Full Name *"
-                    required
-                >
-            </div>
-
-            <div class="field">
-                <input
-                    type="email"
-                    id="femail"
-                    name="email"
-                    placeholder="Email Address *"
-                    required
-                >
-            </div>
-
-            <div class="field">
-                <input
-                    type="tel"
-                    id="fphone"
-                    name="phone"
-                    placeholder="Mobile Number *"
-                    required
-                >
-            </div>
-
-            <div class="field">
-                <input
-                    type="text"
-                    id="fintercollege"
-                    name="intermediateCollege"
-                    placeholder="Intermediate College Name *"
-                    required
-                >
-            </div>
-
-            <div class="field">
-                <input
-                    type="text"
-                    id="finterpercentage"
-                    name="intermediatePercentage"
-                    placeholder="Intermediate Percentage / CGPA *"
-                    required
-                >
-            </div>
-
-            <div class="field">
-                <select id="fprogram" name="program" required>
-                    <option value="">Select Your Program *</option>
-                    <option>B.Tech — Computer Science Engineering</option>
-                    <option>B.Tech — AI & Data Science</option>
-                    <option>B.Tech — Cyber Security</option>
-                    <option>B.Tech — Electronics & Communication</option>
-                    <option>B.Tech — CSE (AI & ML)</option>
-                    <option>B.Tech — ECE (VLSI Design)</option>
-                    <option>B.Tech — Robotics & AI</option>
-                    <option>M.Tech (Integrated) — CSE</option>
-                    <option>Bachelor of Computer Applications (BCA)</option>
-                </select>
-            </div>
-
-            <button type="submit" class="submit-btn">
-                Register Now
-            </button>
-        </form>
-
-        <p class="form-disclaimer">
-            By submitting, you agree to receive program updates from CIT.
-        </p>
-    </div>
-</div>
-```
-
         </div>
     </section>
 
@@ -572,14 +488,43 @@
                     <li><a href="#apply">B.Tech — Cyber Security</a></li>
                 </ul>
             </div>
-            <div class="footer-col">
-                <h4>Quick Enquiry</h4>
-                <form class="footer-form" id="footer-form">
-                    <input type="text" name="name" placeholder="Your Name" required>
-                    <input type="email" name="email" placeholder="Your Email" required>
-                    <input type="tel" name="phone" placeholder="Mobile Number" required>
-                    <button type="submit">Send Enquiry</button>
+            <div class="footer-col footer-col-form" id="apply">
+                <h4>Secure Your Seat — Apply Now</h4>
+                <form class="footer-form footer-form-grid" id="footer-form">
+                    <div class="footer-field">
+                        <input type="text" name="name" placeholder="Full Name *" required>
+                    </div>
+                    <div class="footer-field">
+                        <input type="email" name="email" placeholder="Email Address *" required>
+                    </div>
+                    <div class="footer-field">
+                        <input type="tel" name="phone" placeholder="Mobile Number *" required>
+                    </div>
+                    <div class="footer-field">
+                        <input type="text" name="intermediateCollege" placeholder="Intermediate College Name *" required>
+                    </div>
+                    <div class="footer-field">
+                        <input type="text" name="intermediatePercentage" placeholder="Intermediate Percentage / CGPA *" required>
+                    </div>
+                    <div class="footer-field">
+                        <select name="program" required>
+                            <option value="">Select Your Program *</option>
+                            <option>B.Tech — Computer Science Engineering</option>
+                            <option>B.Tech — AI &amp; Data Science</option>
+                            <option>B.Tech — Cyber Security</option>
+                            <option>B.Tech — Electronics &amp; Communication</option>
+                            <option>B.Tech — CSE (AI &amp; ML)</option>
+                            <option>B.Tech — ECE (VLSI Design)</option>
+                            <option>B.Tech — Robotics &amp; AI</option>
+                            <option>M.Tech (Integrated) — CSE</option>
+                            <option>Bachelor of Computer Applications (BCA)</option>
+                        </select>
+                    </div>
+                    <div class="footer-field footer-field-btn">
+                        <button type="submit">Register Now</button>
+                    </div>
                 </form>
+                <p class="footer-form-disclaimer">By submitting, you agree to receive program updates from CIT.</p>
             </div>
         </div>
         <div class="footer-bar">
@@ -603,8 +548,7 @@
             const tl = gsap.timeline();
             tl.from(".hero-headline", { y: 30, opacity: 0, duration: 0.8, ease: "power3.out" })
               .from(".hero-sub", { y: 20, opacity: 0, duration: 0.6, ease: "power3.out" }, "-=0.4")
-              .from(".hero-tags span", { y: 10, opacity: 0, duration: 0.4, stagger: 0.1, ease: "power3.out" }, "-=0.3")
-              .from(".form-card", { x: 40, opacity: 0, duration: 0.8, ease: "power3.out" }, "-=0.8");
+              .from(".hero-tags span", { y: 10, opacity: 0, duration: 0.4, stagger: 0.1, ease: "power3.out" }, "-=0.3");
         });
 
         // Native Scroll Reveal with Intersection Observer (More reliable than library sync)
@@ -653,13 +597,30 @@
         });
 
         
-// Form Logic
+// Form Logic — with validation to prevent blank submissions
 const handleForm = async (e) => {
     e.preventDefault();
 
     const form = e.target;
     const btn = form.querySelector('button');
     const originalText = btn.textContent;
+
+    // Validate all required fields are filled
+    const requiredFields = form.querySelectorAll('[required]');
+    let isValid = true;
+    requiredFields.forEach(field => {
+        field.classList.remove('field-error');
+        if (!field.value || field.value.trim() === '') {
+            isValid = false;
+            field.classList.add('field-error');
+        }
+    });
+
+    if (!isValid) {
+        // Scroll to the form if not visible
+        form.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        return;
+    }
 
     btn.textContent = 'Processing...';
     btn.disabled = true;
@@ -726,9 +687,6 @@ const handleForm = async (e) => {
         }, 3000);
     }
 };
-
-document.getElementById('hero-form')
-    ?.addEventListener('submit', handleForm);
 
 document.getElementById('footer-form')
     ?.addEventListener('submit', handleForm);
