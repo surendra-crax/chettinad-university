@@ -213,11 +213,9 @@ input,select,button{font-family:var(--font-b)}
 }
 .hero-bg-overlay{display:none} /* handled by gradient in bg */
 .hero-inner{
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    text-align:center;
-    gap:24px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:56px;align-items:center;
 }
 .hero-eyebrow{
     font-size:11px;font-weight:700;letter-spacing:2px;
@@ -232,15 +230,57 @@ input,select,button{font-family:var(--font-b)}
 .gradient-text{color:#f5c430} /* gold on dark = readable + official */
 .hero-sub{
     font-size:15px;color:rgba(255,255,255,.78);
-    line-height:1.8;margin-bottom:26px;max-width:600px;
+    line-height:1.8;margin-bottom:26px;max-width:440px;
 }
-.hero-tags{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+.hero-tags{display:flex;flex-wrap:wrap;gap:8px}
 .hero-tags span{
     background:rgba(255,255,255,.12);
     border:1px solid rgba(255,255,255,.22);
     color:rgba(255,255,255,.85);
     padding:5px 12px;border-radius:3px;font-size:12px;font-weight:500;
 }
+
+/* Lead Form — Premium Glassmorphism */
+.hero-form-wrap { display: flex; justify-content: flex-end; }
+.form-card {
+    background: var(--glass);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--r);
+    padding: 36px 32px;
+    width: 100%;
+    max-width: 420px;
+    box-shadow: var(--shadow-md);
+    position: relative;
+    overflow: hidden;
+}
+.form-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: var(--orange);
+}
+.form-title{font-family:var(--font-h);font-size:18px;font-weight:700;color:var(--navy);margin-bottom:3px}
+.form-subtitle{font-size:12px;color:var(--text-light);margin-bottom:20px}
+.field{margin-bottom:12px}
+.field input,.field select{
+    width:100%;background:var(--grey-bg);
+    border:1px solid var(--border);color:var(--text);
+    padding:10px 13px;border-radius:var(--r);font-size:13px;
+    outline:none;transition:border-color .2s;
+    appearance:none;-webkit-appearance:none;
+}
+.field input::placeholder{color:var(--text-light)}
+.field input:focus,.field select:focus{border-color:var(--orange);background:#fff}
+.submit-btn{
+    width:100%;background:var(--orange);color:#fff;border:none;
+    padding:12px;border-radius:var(--r);font-size:14px;font-weight:700;
+    cursor:pointer;transition:background .2s;margin-top:3px;
+}
+.submit-btn:hover{background:var(--orange-hover)}
+.form-disclaimer{font-size:11px;color:var(--text-light);margin-top:10px;text-align:center;margin-bottom:0}
 
 /* =============================================
    STATS STRIP — white, orange numbers
@@ -570,6 +610,8 @@ footer{background:#12274d;color:rgba(255,255,255,.75);padding:68px 0 0}
     .section-pad{padding:56px 0}
     .hero{padding:80px 0 52px}
     .hero-inner{grid-template-columns:1fr;gap:36px}
+    .hero-form-wrap{justify-content:center}
+    .form-card{max-width:100%;padding:26px 22px}
     .hero-sub{max-width:100%}
     .stats-grid{grid-template-columns:repeat(2,1fr)}
     .stat-item{border-right:none;padding:12px 8px;border-bottom:1px solid var(--border)}
