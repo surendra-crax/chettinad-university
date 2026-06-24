@@ -518,17 +518,16 @@ input,select,button{font-family:var(--font-b)}
    ============================================= */
 footer{background:#12274d;color:rgba(255,255,255,.75);padding:68px 0 0}
 .footer-grid{
-    display:grid;grid-template-columns:2fr 1fr 1fr;
+    display:grid;grid-template-columns:1.5fr 1fr 2.5fr;
     gap:44px;padding-bottom:50px;
     border-bottom:1px solid rgba(255,255,255,.08);
+    align-items:start;
 }
 .footer-col-form{
-    grid-column:1 / -1;
-    padding-top:28px;
-    border-top:1px solid rgba(255,255,255,.08);
+    /* sits as a column beside Programs on desktop */
 }
 .footer-col-form h4{
-    font-size:16px;letter-spacing:0.5px;margin-bottom:20px;
+    font-size:14px;letter-spacing:1px;margin-bottom:16px;
 }
 .footer-logo{
     height:48px;width:auto;border-radius:4px;margin-bottom:14px;
@@ -605,6 +604,7 @@ footer{background:#12274d;color:rgba(255,255,255,.75);padding:68px 0 0}
 @media(max-width:1100px){
     .programs-grid{grid-template-columns:repeat(2,1fr)}
     .footer-grid{grid-template-columns:1fr 1fr;gap:28px}
+    .footer-col-form{grid-column:1 / -1}
 }
 @media(max-width:900px){
     .section-pad{padding:56px 0}
@@ -641,6 +641,7 @@ footer{background:#12274d;color:rgba(255,255,255,.75);padding:68px 0 0}
     .fac-cards{grid-template-columns:1fr}
     .footer-grid{grid-template-columns:1fr;gap:22px}
     .footer-form-grid{grid-template-columns:1fr}
+    .footer-col-form{grid-column:auto}
     .cta-btns{flex-direction:column;align-items:center}
     .elig-box{padding:26px 16px}
     .float-group{bottom:14px;right:12px}
