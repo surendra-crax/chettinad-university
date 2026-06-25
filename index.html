@@ -746,6 +746,25 @@ document.getElementById('footer-form')
         fbq('init', '829581886857875');
         fbq('track', 'PageView');
     </script>
+
+    <!-- Clean up GTM-injected domain verification text -->
+    <script>
+        (function(){
+            var code = 'dxe83o4t4airnbo0njl0s8y7wdetut';
+            function clean(){
+                var walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null, false);
+                while(walker.nextNode()){
+                    if(walker.currentNode.nodeValue.indexOf(code) !== -1){
+                        walker.currentNode.nodeValue = '';
+                    }
+                }
+            }
+            if(document.readyState === 'loading'){ document.addEventListener('DOMContentLoaded', function(){ setTimeout(clean, 500); }); }
+            else { setTimeout(clean, 500); }
+            setTimeout(clean, 1500);
+            setTimeout(clean, 3000);
+        })();
+    </script>
 </body>
 
 </html>
